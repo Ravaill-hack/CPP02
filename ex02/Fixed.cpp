@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: Lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 11:32:33 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/12 16:44:08 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/12 19:47:48 by Lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,80 +76,140 @@ int		Fixed::toInt(void) const
 	return (_raw >> _nb_bits_fract);
 }
 
+//////////////////////////////////////////////////
+//			OPERATEURS DE COMPARAISON			//
+//////////////////////////////////////////////////
+
 bool	Fixed::operator>(const Fixed & other) const
 {
-	
+	return (this->toFloat() > other.toFloat());
 }
 
 bool	Fixed::operator<(const Fixed & other) const
 {
-
+	return (this->toFloat() < other.toFloat());
 }
 
 bool	Fixed::operator>=(const Fixed & other) const
 {
-
+	return (this->toFloat() >= other.toFloat());
 }
 
 bool	Fixed::operator<=(const Fixed & other) const
 {
-	
+	return (this->toFloat() <= other.toFloat());
 }
 
 bool	Fixed::operator==(const Fixed & other) const
 {
-	
+	return (this->toFloat() == other.toFloat());
 }
 
 bool	Fixed::operator!=(const Fixed & other) const
 {
-	
+	return (this->toFloat() != other.toFloat());
 }
+
+//////////////////////////////////////////////////
+//			OPERATEURS ARITHMETIQUES			//
+//////////////////////////////////////////////////
 
 Fixed	Fixed::operator+(const Fixed & other) const
 {
-	
+	Fixed	sum;
+
+	sum.setRawBits (this->getRawBits() + other->getRawBits());
+	return (sum);
 }
 
 Fixed	Fixed::operator-(const Fixed & other) const
 {
-	
+	Fixed	sub;
+
+	sub.setRawBits (this->getRawBits() - other->getRawBits());
+	return (sub);
 }
 
 Fixed	Fixed::operator*(const Fixed & other) const
 {
-	
+	Fixed	prod;
+
+	prod.setRawBits ((this->getRawBits() * other.getRawBits()) / (1 << _nb_bits_fract));
+	return (prod);
 }
 
 Fixed	Fixed::operator/(const Fixed & other) const
 {
-	
+	Fixed	div;
+
+	div.setRawBits ((this->getRawBits() * (1 << _nb_bits_fract) / other.getRawBits()));
+	return (div);	
 }
+
+//////////////////////////////////////////////////
+//			OPERATEURS D'INCREMENTATION			//
+//////////////////////////////////////////////////
 
 Fixed	& Fixed::operator++()
 {
-	
+	++this->_raw;
+	return (*this);
 }
 		
 Fixed	Fixed::operator++(int)
 {
-	
+	Fixed	tmp = *this;
+
+	++this->_raw;
+	return (tmp);
 }
 
 Fixed	& Fixed::operator--()
 {
-	
+	--this->_raw;
+	return (*this);
 }	
 
 Fixed	Fixed::operator--(int)
 {
-	
+	Fixed	tmp = *this;
+
+	--this->_raw;
+	return (tmp);	
 }
 
-static Fixed	min(Fixed & n1, Fixed & n2);
+//////////////////////////////////////////////////
+//					MIN ET MAX					//
+//////////////////////////////////////////////////
 
-static Fixed	min(Fixed const & n1, Fixed const & n2);
+static Fixed	min(Fixed & n1, Fixed & n2)
+{
+	if (n1->toFloat() <= n2->toFloat())
+		return (n1);
+	else
+		return (n2);
+}
 
-static Fixed	max(Fixed & n1, Fixed & n2);
+static Fixed	min(Fixed const & n1, Fixed const & n2)
+{
+	if (n1->toFloat() <= n2->toFloat())
+		return (n1);
+	else
+		return (n2);
+}
 
-static Fixed	max(Fixed const & n1, Fixed const & n2);
+static Fixed	max(Fixed & n1, Fixed & n2)
+{
+	if (n1->toFloat() >= n2->toFloat())
+		return (n1);
+	else
+		return (n2);
+}
+
+static Fixed	max(Fixed const & n1, Fixed const & n2)
+{
+	if (n1->toFloat() >= n2->toFloat())
+		return (n1);
+	else
+		return (n2);
+}
