@@ -5,20 +5,24 @@
 # include <iomanip>
 # include <iostream>
 # include <string>
+# include <cmath>
 
 class Fixed
 {
 	private:
-		int			_nb_value;
+		int			_raw;
 		static int	_nb_bits_fract;
 
 	public:
 		Fixed();
-		Fixed(const Fixed& other);
+		Fixed(Fixed const & other);
 		~Fixed();
-		Fixed(const int);
-		Fixed(const float);
-		Fixed &operator=(const Fixed& other);
+		
+		Fixed & operator=(const Fixed& other);
+
+		Fixed(const int i);
+		Fixed(const float f);
+
 		int			getRawBits(void) const;
 		void		setRawBits(int const raw);
 		float		toFloat(void) const;
@@ -26,6 +30,6 @@ class Fixed
 
 };
 
-std::ostream &operator<<(std::ostream &os, const Fixed& nb);
+std::ostream & operator<<(std::ostream & os, Fixed const & nb);
 
 #endif
