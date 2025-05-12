@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 11:32:33 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/12 15:31:18 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:44:08 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,3 +75,81 @@ int		Fixed::toInt(void) const
 {
 	return (_raw >> _nb_bits_fract);
 }
+
+bool	Fixed::operator>(const Fixed & other) const
+{
+	
+}
+
+bool	Fixed::operator<(const Fixed & other) const
+{
+
+}
+
+bool	Fixed::operator>=(const Fixed & other) const
+{
+
+}
+
+bool	Fixed::operator<=(const Fixed & other) const
+{
+	
+}
+
+bool	Fixed::operator==(const Fixed & other) const
+{
+	
+}
+
+bool	Fixed::operator!=(const Fixed & other) const
+{
+	
+}
+
+Fixed	Fixed::operator+(const Fixed & other) const
+{
+	
+}
+
+Fixed	Fixed::operator-(const Fixed & other) const
+{
+	
+}
+
+Fixed	Fixed::operator*(const Fixed & other) const
+{
+	
+}
+
+Fixed	Fixed::operator/(const Fixed & other) const
+{
+	
+}
+
+Fixed	& Fixed::operator++()
+{
+	
+}
+		
+Fixed	Fixed::operator++(int)
+{
+	
+}
+
+Fixed	& Fixed::operator--()
+{
+	
+}	
+
+Fixed	Fixed::operator--(int)
+{
+	
+}
+
+static Fixed	min(Fixed & n1, Fixed & n2);
+
+static Fixed	min(Fixed const & n1, Fixed const & n2);
+
+static Fixed	max(Fixed & n1, Fixed & n2);
+
+static Fixed	max(Fixed const & n1, Fixed const & n2);
