@@ -6,7 +6,7 @@
 /*   By: Lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 11:32:33 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/12 19:47:48 by Lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/12 20:36:18 by Lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,29 @@ int	Fixed::_nb_bits_fract = 8;
 
 Fixed::Fixed() : _raw(0)
 {
-	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed& other)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = other;
 }
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
 }
 
 Fixed::Fixed(const int i)
 {
-	std::cout << "Int constructor called" << std::endl;
 	setRawBits(i << _nb_bits_fract);
 }
 
 Fixed::Fixed(const float f)
 {
-	std::cout << "Float constructor called" << std::endl;
 	setRawBits(roundf(f * (1 << _nb_bits_fract)));
 }
 
 Fixed& Fixed::operator=(const Fixed& other)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other)
 		setRawBits(other.getRawBits());
 	return (*this);
@@ -118,7 +112,7 @@ Fixed	Fixed::operator+(const Fixed & other) const
 {
 	Fixed	sum;
 
-	sum.setRawBits (this->getRawBits() + other->getRawBits());
+	sum.setRawBits (this->getRawBits() + other.getRawBits());
 	return (sum);
 }
 
@@ -126,7 +120,7 @@ Fixed	Fixed::operator-(const Fixed & other) const
 {
 	Fixed	sub;
 
-	sub.setRawBits (this->getRawBits() - other->getRawBits());
+	sub.setRawBits (this->getRawBits() - other.getRawBits());
 	return (sub);
 }
 
@@ -182,33 +176,33 @@ Fixed	Fixed::operator--(int)
 //					MIN ET MAX					//
 //////////////////////////////////////////////////
 
-static Fixed	min(Fixed & n1, Fixed & n2)
+Fixed	Fixed::min(Fixed & n1, Fixed & n2)
 {
-	if (n1->toFloat() <= n2->toFloat())
+	if (n1.toFloat() <= n2.toFloat())
 		return (n1);
 	else
 		return (n2);
 }
 
-static Fixed	min(Fixed const & n1, Fixed const & n2)
+Fixed	Fixed::min(Fixed const & n1, Fixed const & n2)
 {
-	if (n1->toFloat() <= n2->toFloat())
+	if (n1.toFloat() <= n2.toFloat())
 		return (n1);
 	else
 		return (n2);
 }
 
-static Fixed	max(Fixed & n1, Fixed & n2)
+Fixed	Fixed::max(Fixed & n1, Fixed & n2)
 {
-	if (n1->toFloat() >= n2->toFloat())
+	if (n1.toFloat() >= n2.toFloat())
 		return (n1);
 	else
 		return (n2);
 }
 
-static Fixed	max(Fixed const & n1, Fixed const & n2)
+Fixed	Fixed::max(Fixed const & n1, Fixed const & n2)
 {
-	if (n1->toFloat() >= n2->toFloat())
+	if (n1.toFloat() >= n2.toFloat())
 		return (n1);
 	else
 		return (n2);
