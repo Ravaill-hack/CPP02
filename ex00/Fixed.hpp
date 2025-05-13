@@ -9,7 +9,7 @@
 class Fixed
 {
 	private:
-		int			_nb_value;
+		int			_raw;
 		static int	_nb_bits_fract;
 
 	public:

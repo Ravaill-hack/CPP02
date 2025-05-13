@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 20:45:44 by Lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/12 21:21:12 by Lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/13 08:24:58 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Point::Point(Point const & to_copy) : _x(to_copy._x), _y(to_copy._y) {}
 Point & Point::operator=(const Point & other)
 {
 	(void)other;
-	return (*this); // on ne peut rien faire car _x et _y sont demandes constants et donc jamais modifiables apres l'instanciation... Erreur de la consigne??
+	return (*this); // cet operateur ne peut pas copier les membres car _x et _y sont demandes constants et donc jamais modifiables apres l'instanciation... Erreur de la consigne??
 }
 
 Point::Point(float const x, float const y) : _x(x), _y(y) {}
@@ -35,4 +35,14 @@ float Point::getX(void) const
 float Point::getY(void) const
 {
 	return (this->_y.toFloat());
+}
+
+Fixed const & Point::getFixedX(void) const
+{
+	return (this->_x);
+}
+
+Fixed const & Point::getFixedY(void) const
+{
+	return (this->_y);
 }
